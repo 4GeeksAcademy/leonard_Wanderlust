@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wanderlust Explorer
+
+Wanderlust Explorer is a multi-page Next.js App Router app to discover travel experiences, apply shareable URL filters, view details, and save favorites in React state.
+
+## Tech Stack
+
+- Next.js (App Router)
+- React + TypeScript
+- Tailwind CSS + custom global styles
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/` Home hero with call to action.
+- `/experiences` Explorer with search + category + destination filters.
+- `/experiences/[id]` Detail page for one experience.
+- `/favorites` Favorites list from shared app state.
+- `/profile` Static user profile + saved favorites count.
 
-## Learn More
+## Features Implemented
 
-To learn more about Next.js, take a look at the following resources:
+- 100 local experience objects in TypeScript.
+- `Experience` interface used consistently across pages and components.
+- Regex title search (`/term/i`) with escaped user input.
+- Independent category and destination filters that stack with search.
+- URL query state for `search`, `category`, and `destination`.
+- Query params pre-fill controls and pre-filter results on load.
+- Favorites toggle with heart icon on cards and detail page.
+- Favorites managed by top-level `useState` via shared provider.
+- Active nav link styling with `usePathname`.
+- `No results found` empty state for filtered views.
+- Responsive layout for mobile and desktop.
+- Custom hook: `useExperienceFilters`.
+- `useEffect` usage for URL synchronization and detail title updates.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Design References
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Viator Philadelphia Tours: https://www.viator.com/Philadelphia-tourism/d906-r20657254331-s227193491
+- GetYourGuide Experiences: https://www.getyourguide.com/
+- Airbnb Experiences Browse Patterns: https://www.airbnb.com/experiences
 
-## Deploy on Vercel
+## Project Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Favorites persistence across browser refresh is intentionally out of scope.
+- No external state libraries are used (Redux/Zustand/etc.).
